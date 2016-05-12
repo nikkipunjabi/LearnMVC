@@ -1,0 +1,62 @@
+﻿@model LearnMVC.ViewModels.EmployeeListViewModel
+@{
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+<h2>Welcome to MVC 5 Step learning</h2>
+@*Header Section*@
+@*<div style="text-align:right"> Hello, @Model.UserName <a href="/Authentication/Logout">Logout</a> </div>*@
+
+@*<a href="/Employee/AddNew">Add New</a>*@
+
+@section TitleSection{
+    MyView
+}
+
+@section ContentBody{
+
+    <div>
+        @*@{
+                LearnMVC.Models.Employee emp = (LearnMVC.Models.Employee)ViewBag.Employee;//ViewData["Employee"];
+            }*@
+
+        @{Html.RenderAction("GetAddNewLink");}
+        <hr />
+        <table border="1">
+            <tr>
+                <th>Employee Name</th>
+                <th>Salary</th>
+            </tr>
+            @foreach (LearnMVC.ViewModels.EmployeeViewModel item in Model.Employees)
+            {
+                <tr>
+                    <td>@item.EmployeeName</td>
+                    <td style="background-color:@item.SalaryColor">@item.Salary</td>
+                </tr>
+            }
+        </table>
+
+        @*Footer Section*@
+        @*@{
+                Html.RenderPartial("Footer", Model.FooterData);
+            }
+
+            @{
+                MvcHtmlString result = Html.Partial("Footer", Model.FooterData);
+                string finalResult = result.ToHtmlString().Replace("2016", "20000");
+            }
+            @MvcHtmlString.Create(finalResult)*@
+        @*-------Footer Section Ends------------------------*@
+
+        @*Old Mechanism*@
+
+        @*<b> Employee Details: </b><br />
+            Employee Name: @Model.EmployeeName <br />
+            <span style="background-color:@Model.SalaryColor">
+                Employee Salary: @Model.Salary;
+            </span>*@
+
+        @*----------END OLD Mechanism-----------------------------*@
+
+    </div>
+}

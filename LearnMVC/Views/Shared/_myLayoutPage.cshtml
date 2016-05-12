@@ -1,0 +1,21 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div>
+        <h2>Wassup Bro!</h2>
+    @RenderBody()
+    </div>
+    <footer class="panel-footer">
+        @RenderSection("footer",false)
+    </footer>
+</body>
+</html>
