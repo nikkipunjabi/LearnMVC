@@ -19,6 +19,7 @@ namespace LearnMVC.Controllers
         }
 
         [Authorize]
+        [HeaderFooterFilter]
         public ActionResult Index()
         {
             #region Section 1
@@ -73,11 +74,11 @@ namespace LearnMVC.Controllers
                 }
                 empViewModels.Add(empviewModel);
             }
-            employeeListViewModel.UserName = User.Identity.Name;
+            //employeeListViewModel.UserName = User.Identity.Name;
             employeeListViewModel.Employees = empViewModels;
-            employeeListViewModel.FooterData = new FooterViewModel();
-            employeeListViewModel.FooterData.CompanyName = "Horizontal India";
-            employeeListViewModel.FooterData.Year = DateTime.Now.Year.ToString();
+            //employeeListViewModel.FooterData = new FooterViewModel();
+            //employeeListViewModel.FooterData.CompanyName = "Horizontal India";
+            //employeeListViewModel.FooterData.Year = DateTime.Now.Year.ToString();
             return View(employeeListViewModel);
             #endregion
 
@@ -92,18 +93,20 @@ namespace LearnMVC.Controllers
         }
 
         [AdminFilter]
+        [HeaderFooterFilter]
         public ActionResult AddNew()
         {
             CreateEmployeeViewModel employeeListViewModel = new CreateEmployeeViewModel();
-            employeeListViewModel.FooterData = new FooterViewModel();
-            employeeListViewModel.FooterData.CompanyName = "StepByStepSchools";//Can be set to dynamic value
-            employeeListViewModel.FooterData.Year = DateTime.Now.Year.ToString();
-            employeeListViewModel.UserName = User.Identity.Name; //New Line
+            //employeeListViewModel.FooterData = new FooterViewModel();
+            //employeeListViewModel.FooterData.CompanyName = "StepByStepSchools";//Can be set to dynamic value
+            //employeeListViewModel.FooterData.Year = DateTime.Now.Year.ToString();
+            //employeeListViewModel.UserName = User.Identity.Name; //New Line
             return View("CreateEmployee", employeeListViewModel);
         }
 
         [AdminFilter]
         [ValidateAntiForgeryToken]
+        [HeaderFooterFilter]
         public ActionResult SaveEmployee(Employee e, string btnSubmit)
         {
             switch (btnSubmit)
